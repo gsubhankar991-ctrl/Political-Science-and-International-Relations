@@ -1,0 +1,766 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img,
+video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+ul li,
+ol li{
+    list-style-type: none;
+}
+
+div::before,
+div::after{
+    visibility: hidden;
+    clear: both;
+    content: "";
+    display: table;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ================================= */
+/*          BATCH HEADING             */
+/* ================================= */
+
+.batch-head{
+    z-index: 999;
+}
+
+.batch-head h3{
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.batch-head h1{
+    font-family: "Croissant One", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.thanks h2{
+    font-family: "Yellowtail", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+/* ================================= */
+/*              PHOTOS                */
+/* ================================= */
+
+.batch img{
+    padding: 2px;
+    border-radius: 20px;
+
+    object-fit: cover;
+
+    background:
+        linear-gradient(
+            163deg,
+            rgba(131, 58, 180, 1) 0%,
+            rgba(253, 29, 29, 1) 50%,
+            rgba(252, 176, 69, 1) 100%
+        );
+}
+
+
+/* ================================= */
+/*             MARQUEE                */
+/* ================================= */
+
+.marquee-container{
+    height: 100vh;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.marquee-content{
+    position: absolute;
+    width: 100%;
+}
+
+
+/* ================================= */
+/*          PHOTO POPUP               */
+/* ================================= */
+
+.popup img{
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* Popup main container */
+
+.show{
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+}
+
+
+/* Popup overlay */
+
+.show .overlay{
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0);
+
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(0px);
+
+    transition: .45s ease;
+
+    pointer-events: auto;
+}
+
+
+/* Popup image box */
+
+.show .img-show{
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 1000px;
+
+    max-width: 90%;
+
+    height: 550px;
+
+    background: #ffffff00;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.75);
+
+    transition:
+        transform .45s cubic-bezier(.22,1,.36,1),
+        opacity .35s ease;
+
+    z-index: 100000;
+}
+
+
+/* Active popup */
+
+.show.active .overlay{
+    background: rgba(0,0,0,.75);
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.show.active .img-show{
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+
+/* Popup image */
+
+.img-show img{
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
+/* Close button */
+
+.img-show span{
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    font-size: 35px;
+
+    color: #fff;
+
+    cursor: pointer;
+
+    z-index: 100001;
+
+    line-height: 1;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ================================= */
+/*        WATCH OUR STORY             */
+/* ================================= */
+
+.video-btn{
+    position: fixed;
+
+    right: 30px;
+    bottom: 25px;
+
+    z-index: 10000;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    pointer-events: auto;
+}
+
+
+/* Round button */
+
+.story-btn{
+    width: 80px;
+    height: 80px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.25);
+
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.35);
+
+    box-shadow:
+        0 0 15px
+        rgba(255,255,255,0.25),
+
+        inset 0 0 15px
+        rgba(255,255,255,0.10);
+
+    animation:
+        up-down .9s linear infinite alternate;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+
+    -webkit-tap-highlight-color: transparent;
+
+    pointer-events: auto;
+}
+
+
+/* Hover */
+
+.story-btn:hover{
+    transform: scale(1.1);
+
+    background:
+        rgba(255,255,255,0.35);
+}
+
+
+/* Play icon */
+
+.play-icon{
+    width: 0;
+    height: 0;
+
+    border-top:
+        13px solid transparent;
+
+    border-bottom:
+        13px solid transparent;
+
+    border-left:
+        20px solid white;
+
+    margin-left: 5px;
+
+    filter:
+        drop-shadow(
+            0 0 4px
+            rgba(0,0,0,.6)
+        );
+}
+
+
+/* Story text */
+
+.video-btn p{
+    margin: 14px 0 0;
+
+    color: white;
+
+    font-family:
+        "Orbitron",
+        sans-serif;
+
+    font-optical-sizing: auto;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    font-style: normal;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 3px #000,
+        0 0 6px #000;
+}
+
+
+/* ================================= */
+/*        WATCH STORY ANIMATION       */
+/* ================================= */
+
+@keyframes up-down{
+
+    from{
+        transform:
+            translateY(0)
+            scale(1);
+
+        box-shadow:
+            0 0 15px
+            rgba(255,255,255,.25);
+    }
+
+    to{
+        transform:
+            translateY(12px)
+            scale(1.05);
+
+        box-shadow:
+            0 15px 15px -5px
+            rgba(0,0,0,.6);
+    }
+
+}
+
+
+/* ================================= */
+/*               BODY                 */
+/* ================================= */
+
+body{
+   body{
+    margin: 0;
+    position: relative;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    min-height: 100vh;
+
+    -webkit-overflow-scrolling: touch;
+}
+}
+
+
+/* Background grid */
+
+body::after{
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,.03) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.03) 1px,
+            transparent 1px
+        );
+
+    background-size: 60px 60px;
+
+    animation:
+        gridMove 15s linear infinite;
+}
+
+
+/* Grid animation */
+
+@keyframes gridMove{
+
+    from{
+        transform:
+            translateY(0);
+    }
+
+    to{
+        transform:
+            translateY(60px);
+    }
+
+}
+
+
+/* ================================= */
+/*             PARTICLES              */
+/* ================================= */
+
+.particles{
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 9999;
+}
+
+.particles span{
+    position: absolute;
+
+    bottom: -20px;
+
+    width: 4px;
+    height: 4px;
+
+    background: #FFD700;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px #FFD700;
+
+    opacity: .8;
+
+    animation:
+        particleUp
+        linear
+        infinite;
+
+    pointer-events: none;
+}
+
+
+/* Particle positions */
+
+.particles span:nth-child(1){
+    left: 5%;
+
+    animation-duration: 12s;
+}
+
+.particles span:nth-child(2){
+    left: 15%;
+
+    width: 6px;
+    height: 6px;
+
+    animation-duration: 18s;
+}
+
+.particles span:nth-child(3){
+    left: 25%;
+
+    animation-duration: 10s;
+}
+
+.particles span:nth-child(4){
+    left: 38%;
+
+    width: 5px;
+    height: 5px;
+
+    animation-duration: 15s;
+}
+
+.particles span:nth-child(5){
+    left: 50%;
+
+    animation-duration: 20s;
+}
+
+.particles span:nth-child(6){
+    left: 62%;
+
+    width: 7px;
+    height: 7px;
+
+    animation-duration: 13s;
+}
+
+.particles span:nth-child(7){
+    left: 72%;
+
+    animation-duration: 16s;
+}
+
+.particles span:nth-child(8){
+    left: 82%;
+
+    width: 5px;
+    height: 5px;
+
+    animation-duration: 14s;
+}
+
+.particles span:nth-child(9){
+    left: 90%;
+
+    animation-duration: 19s;
+}
+
+.particles span:nth-child(10){
+    left: 97%;
+
+    animation-duration: 11s;
+}
+
+
+/* Particle animation */
+
+@keyframes particleUp{
+
+    0%{
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity: 0;
+    }
+
+    15%{
+        opacity: .9;
+    }
+
+    100%{
+        transform:
+            translateY(-110vh)
+            scale(1.4);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* ================================= */
+/*              SPARK                 */
+/* ================================= */
+
+.spark{
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: gold;
+
+    box-shadow:
+        0 0 12px gold;
+
+    animation:
+        fadeOut
+        .8s
+        linear
+        forwards;
+
+    pointer-events: none;
+}
+
+
+/* Spark animation */
+
+@keyframes fadeOut{
+
+    0%{
+        opacity: 1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+
+    100%{
+        opacity: 0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(0);
+    }
+
+}
+
+
+/* ================================= */
+/*              MOBILE                */
+/* ================================= */
+
+@media (max-width: 768px){
+
+    /* Watch Story */
+
+    .video-btn{
+
+        right: 15px;
+
+        bottom: 15px;
+
+        z-index: 10000;
+    }
+
+    .story-btn{
+
+        width: 60px;
+
+        height: 60px;
+    }
+
+    .play-icon{
+
+        border-top-width: 10px;
+
+        border-bottom-width: 10px;
+
+        border-left-width: 16px;
+
+        margin-left: 4px;
+    }
+
+    .video-btn p{
+
+        margin-top: 9px;
+
+        font-size: 11px;
+
+        white-space: nowrap;
+    }
+
+
+    /* Popup */
+
+    .show .img-show{
+
+        width: 95%;
+
+        max-width: 95%;
+
+        height: 70vh;
+
+        max-height: 70vh;
+    }
+
+    .img-show span{
+
+        top: 10px;
+
+        right: 12px;
+
+        font-size: 30px;
+    }
+
+
+    /* Mobile photo click */
+
+    .popup,
+    .popup img{
+
+        pointer-events: auto;
+
+        touch-action: manipulation;
+    }
+
+}
+
+
+/* ================================= */
+/*        SMALL MOBILE SCREEN         */
+/* ================================= */
+
+@media (max-width: 480px){
+
+    .video-btn{
+
+        right: 10px;
+
+        bottom: 10px;
+    }
+
+    .story-btn{
+
+        width: 55px;
+
+        height: 55px;
+    }
+
+    .play-icon{
+
+        border-top-width: 9px;
+
+        border-bottom-width: 9px;
+
+        border-left-width: 14px;
+    }
+
+    .video-btn p{
+
+        font-size: 10px;
+
+        margin-top: 7px;
+    }
+
+}

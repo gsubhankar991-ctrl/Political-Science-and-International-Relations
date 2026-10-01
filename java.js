@@ -1,106 +1,89 @@
+// ===============================
+// MOUSE PARTICLES
+// ===============================
+
 const container = document.querySelector(".mouse-particles");
 
-document.addEventListener("mousemove", (e) => {
+if (container) {
+    document.addEventListener("mousemove", (e) => {
 
-    const spark = document.createElement("span");
-    spark.classList.add("spark");
+        const spark = document.createElement("span");
+        spark.classList.add("spark");
 
-    spark.style.left = e.clientX + "px";
-    spark.style.top = e.clientY + "px";
+        spark.style.left = e.clientX + "px";
+        spark.style.top = e.clientY + "px";
 
-    const size = Math.random() * 6 + 3;
-    spark.style.width = size + "px";
-    spark.style.height = size + "px";
+        const size = Math.random() * 6 + 3;
 
-    container.appendChild(spark);
+        spark.style.width = size + "px";
+        spark.style.height = size + "px";
 
-    setTimeout(() => {
-        spark.remove();
-    }, 800);
+        container.appendChild(spark);
 
-});
-const container = document.querySelector(".mouse-particles");
-
-document.addEventListener("mousemove", (e) => {
-
-    const spark = document.createElement("span");
-    spark.classList.add("spark");
-
-    spark.style.left = e.clientX + "px";
-    spark.style.top = e.clientY + "px";
-
-    const size = Math.random() * 6 + 3;
-    spark.style.width = size + "px";
-    spark.style.height = size + "px";
-
-    container.appendChild(spark);
-
-    setTimeout(() => {
-        spark.remove();
-    }, 800);
-
-});
+        setTimeout(() => {
+            spark.remove();
+        }, 800);
+    });
+}
 
 
+// ===============================
 // VIDEO ELEMENTS
+// ===============================
+
 const enterBtn = document.getElementById("enterBtn");
 const video = document.getElementById("introVideo");
 const popup = document.getElementById("videoPopup");
 const content = document.getElementById("content");
 
 
+// ===============================
 // BUTTON CLICK
-enterBtn.addEventListener("click", () => {
+// ===============================
 
-    popup.style.display = "flex";
+if (enterBtn && video && popup) {
 
-    video.currentTime = 0;
+    enterBtn.addEventListener("click", () => {
 
-    video.play();
+        popup.style.display = "flex";
 
-});
+        video.currentTime = 0;
+
+        video.play().catch((error) => {
+            console.log("Video play error:", error);
+        });
+
+    });
+
+}
 
 
+// ===============================
 // VIDEO FINISHED
-video.addEventListener("ended", () => {
+// ===============================
 
-    popup.style.display = "none";
+if (video && popup && content) {
 
-    content.scrollIntoView({
-        behavior: "smooth"
-    });
+    video.addEventListener("ended", () => {
 
-    setTimeout(() => {
+        popup.style.display = "none";
 
-        AOS.init({
-            once: true
+        content.scrollIntoView({
+            behavior: "smooth"
         });
 
-        AOS.refreshHard();
+        setTimeout(() => {
 
-    }, 500);
+            if (typeof AOS !== "undefined") {
+                AOS.init({
+                    once: true
+                });
 
-});
-const video = document.getElementById("introVideo");
-const popup = document.getElementById("videoPopup");
-const content = document.getElementById("content");
+                AOS.refreshHard();
+            }
 
-video.addEventListener("ended",()=>{
+        }, 500);
 
-    popup.style.display="none";
-
-    content.scrollIntoView({
-        behavior:"smooth"
     });
 
-    setTimeout(()=>{
-
-        AOS.init({
-            once:true
-        });
-
-        AOS.refreshHard();
-
-    },500);
-
-});
+}

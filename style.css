@@ -260,3 +260,40 @@ button{
     box-shadow: 0 0 15px 0 rgb(255, 255, 255);
     text-shadow: 0px 0px 4px #fff;
 }
+
+
+
+
+#enterBtn {
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.35);
+
+    transition: all 0.3s ease;
+}
+
+#enterBtn:hover {
+    color: #000;
+    background: #fff;
+    border-color: #fff;
+
+    box-shadow:
+        0 0 15px rgba(255, 255, 255, 0.7),
+        0 0 35px rgba(255, 255, 255, 0.4);
+
+    transform: translateY(-3px);
+}
+
+#enterBtn span:first-child {
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+#enterBtn span:last-child {
+    opacity: 0.9;
+    letter-spacing: 2px;
+}
